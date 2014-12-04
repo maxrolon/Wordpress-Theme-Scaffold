@@ -199,4 +199,36 @@ include_once("library/helpers/loops.helper.class.php");
 include_once("library/functions/theme/app.php");
 
 
+
+
+
+/**
+ * =====================================================
+ *
+ * Restructure IMG HTML to allow lazy-loading
+ *
+ * =====================================================
+ */
+function callback($html) {
+	$pattern = '/<img[^>]*src=(?:["])+([^> ]*)(?:["])[^>]*\/?>/';
+	$new_html = preg_replace_callback($pattern,
+		function($matches){
+			preg_match('/alt=(?:["])+([^> ]*)(?:["])/',$matches[0],$alt);
+			preg_match('/width=(?:["])+([^> ]*)(?:["])/',$matches[0],$width);
+			preg_match('/height=(?:["])+([^> ]*)(?:["])/',$matches[0],$height);
+			return '
+			<div class="image-container">
+				<noscript><img src="'.$matches[1].'" width="'.$width[1].'" height="'.$height[1].'" alt="'.$alt[1].'" /></noscript>
+				<img src="'.get_bloginfo('stylesheet_directory').'/img/placeholder.gif" data-src="'.$matches[1].'" width="'.$width[1].'" height="'.$height[1].'" alt="'.$alt[1].'" />
+			</div>';
+		}, 
+		$html);
+	return $new_html;
+}
+
+function buffer_start() { ob_start("callback"); }
+add_action('wp_head', 'buffer_start');
+
+function buffer_end() { ob_end_flush(); }
+add_action('wp_footer', 'buffer_end');
 ?>

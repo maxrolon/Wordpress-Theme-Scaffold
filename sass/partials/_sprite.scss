@@ -1,4 +1,4 @@
-.sprite-arrow-down() {
+@mixin sprite-arrow-down() {
   
   width: round(61px /2);
   height: round(32px/2);
@@ -13,7 +13,7 @@
   
 }
 
-.sprite-arrow-right() {
+@mixin sprite-arrow-right() {
   
   width: round(30px /2);
   height: round(41px/2);
@@ -28,7 +28,7 @@
   
 }
 
-.sprite-close() {
+@mixin sprite-close() {
   
   width: round(53px /2);
   height: round(53px/2);
@@ -43,7 +43,7 @@
   
 }
 
-.sprite-quotation-mark() {
+@mixin sprite-quotation-mark() {
   
   width: round(56px /2);
   height: round(38px/2);
