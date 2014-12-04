@@ -1,0 +1,132 @@
+/**
+ *
+ * Colors
+ *
+ */
+
+@body-bg: #000;
+
+@colour: #000000;
+@text-color: #ffffff;
+
+@link-color: #BC2035;
+@link-hover-color: darken(@link-color,1.3);
+@link-bg: #BC2035;
+
+@hr: #000000;
+
+/**
+ *
+ * Typography
+ *
+ */
+
+@font-family-base: '', Helvetica, Arial, sans-serif;
+@type-secondary: '', Helvetica, Arial, sans-serif;
+
+@font-size-base: 19px;
+@line-height-base: 26px;
+@type-weight-base: 500;
+
+@font-size-h1: 70px; 
+@line-height-h1: 1.2; 
+
+@font-size-h2: 45px;
+@line-height-h2: 1.4; 
+
+@font-size-h3: 34px;
+@line-height-h3: 1.4;
+
+@font-size-h4: 28px;
+@line-height-h4: 1.5;
+
+@font-size-h5: 22px;
+@line-height-h5: 1.5;
+
+@font-size-h6: 14px; //Social Feed
+@line-height-h6: 1.3;
+
+
+/**
+ *
+ * Grid Variables
+ *
+ */
+
+// Mobile
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+
+// Tablet
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+@screen-lg:                  1100px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+
+//== Grid system
+//
+@grid-columns:              12;
+@grid-gutter-width:         15px;
+@grid-float-breakpoint:     @screen-sm-min;
+@grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
+
+
+//== Container sizes
+
+@container-tablet:             ((720px + @grid-gutter-width));
+@container-sm:                 @container-tablet;
+
+@container-desktop:            ((940px + @grid-gutter-width));
+@container-md:                 @container-desktop;
+
+@container-large-desktop:      ((1020px + @grid-gutter-width));
+@container-lg:                 @container-large-desktop;
+
+
+/**
+ *
+ * Mixins
+ *
+ */
+
+.absolute-center(){
+	position: absolute;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	left:0px;
+	margin: auto;
+}
+
+.cb-custom-scroll(){
+	::-webkit-scrollbar              { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-track        { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-track-piece  { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-thumb        { background: @cb-grey;}
+}
+
+.font-smoothing(@a) when ( @a = true){
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-smoothing(@a) when ( @a = false){
+	-webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
