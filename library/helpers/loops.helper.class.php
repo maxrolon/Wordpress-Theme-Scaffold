@@ -24,14 +24,14 @@ class loop{
 	 *
 	 */
 	 private function cache_loops(){
-		 global $theme_loops;
+		global $theme_loops;
 		
-		 if (isset($theme_loops)):
-		 	
-		 	$this->loops = $theme_loops;
-		 
-		 endif;
-		 
+		if (isset($theme_loops)):
+		
+			$this->loops = $theme_loops;
+		
+		endif;
+		
 	 }
 	
 	/** 

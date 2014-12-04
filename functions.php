@@ -131,7 +131,7 @@ if(function_exists("register_field_group")){
 	 * $arg defined in library/helpers/acf.helper.class.php
 	 *
 	 */
- new library\helpers\field_group('Custom Page',$args);
+	new library\helpers\field_group('Custom Page',$args);
 
 }
 
@@ -149,13 +149,11 @@ if(function_exists("register_field_group")){
 #add_action('wp', 'redirect_404');
    
 function redirect_404(){
-	  
-	   if ( is_404() ) {
-	   	header ('HTTP/1.1 301 Moved Permanently');
-		 	header ("Location: " . get_bloginfo('url') );
-		 	exit(0);
-   }
-   
+	if ( is_404() ) {
+		header ('HTTP/1.1 301 Moved Permanently');
+		header ("Location: " . get_bloginfo('url') );
+	 	exit(0);
+	}
 }
 
 
@@ -170,7 +168,7 @@ function redirect_404(){
  */
 
 if ( is_admin() ) {
-   include_once("library/functions/admin/admin-functions.php");
+	include_once("library/functions/admin/admin-functions.php");
 }
 
 
