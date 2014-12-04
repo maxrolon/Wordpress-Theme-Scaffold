@@ -131,7 +131,7 @@ if(function_exists("register_field_group")){
 	 * $arg defined in library/helpers/acf.helper.class.php
 	 *
 	 */
-	new library\helpers\field_group('Custom Page',$args);
+	#new library\helpers\field_group('Custom Page',$args);
 
 }
 

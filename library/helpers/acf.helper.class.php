@@ -137,6 +137,12 @@ class field_group implements bootstrap_fields{
 	 * @return array
 	 *	
 	 */	
+	/** 
+	 * Constructs the array of fields
+	 * @params array
+	 * @return array
+	 *	
+	 */	
 	function construct_fields($array){
 		$fields = $array['fields'];
 		$output = array();
@@ -175,16 +181,71 @@ class field_group implements bootstrap_fields{
 					'sub_fields' => $sub_fields,
 					'row_min' => 0,
 					'row_limit' => '',
-					'layout' => 'row',
+					'layout' => isset($value['layout']) ? $value['layout'] : 'row',
 					'button_label' => $value['add_label'],
 					'default_value' => '',
 					'toolbar' => 'full',
 					'media_upload' => 'yes',
 					
 				);
+				
+				if (isset($value['conditional'])):
+					if ( is_array($value['conditional']) && sizeof($value['conditional']) == 3):
+					
+						$temp_conditional_field = strtolower($value['conditional'][0]);
+						$conditional_field = str_replace(' ','_',$temp_conditional_field);
+							
+						$conditional_logic = array(
+							'status' => 1,
+							'allorany' => 'all',
+							'rules' => array(
+								array(
+									'field' => $this->name.'_'.$conditional_field,
+									'operator' => $value['conditional'][1],
+									'value' => $value['conditional'][2],
+								),
+							),
+						);	
+					
+						$field['conditional_logic']	= $conditional_logic;
+					
+					endif;
+				endif;
 			
 				$sub_fields = array();
 			
+			} elseif ($value[0] == 'select'){
+			
+				$temp_key = strtolower($key);
+				$field_key = str_replace(' ','_',$temp_key);
+				
+				$choices = array();
+				$i = 0;
+				
+				foreach ($value[2] as $choice):
+				
+					$temp_choice_key = strtolower($choice);
+					$choice_key = str_replace(' ','_',$temp_choice_key);
+				
+					$choices[$choice_key] = $choice;
+					
+					if ($i == 0):
+						$default = $choice_key;
+					endif;
+					
+					$i++;
+				endforeach;
+				
+				$field = array(
+					'key' => $this->name.'_'.$field_key,
+					'label' => $key,
+					'name' => $this->name.'_'.$field_key,
+					'type' => $value[0],
+					'instructions' => $value[1],
+					'choices' => $choices,
+					'default_value' => $default,
+				);
+				
 			} else {
 			
 				$temp_key = strtolower($key);
@@ -199,6 +260,29 @@ class field_group implements bootstrap_fields{
 				);
 				
 			}
+			
+			if (isset($value[2])):
+				if ( is_array($value[2]) && sizeof($value[2]) == 3):
+				
+				$temp_conditional_field = strtolower($value[2][0]);
+				$conditional_field = str_replace(' ','_',$temp_conditional_field);
+					
+				$conditional_logic = array(
+					'status' => 1,
+					'allorany' => 'all',
+					'rules' => array(
+						array(
+							'field' => $this->name.'_'.$conditional_field,
+							'operator' => $value[2][1],
+							'value' => $value[2][2],
+						),
+					),
+				);	
+				
+				$field['conditional_logic']	= $conditional_logic;
+				
+				endif;
+			endif;
 			
 			array_push($output, $field);
 	

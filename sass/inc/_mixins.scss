@@ -1,0 +1,120 @@
+/**
+ * ===============================================
+ * Padding + Margin
+ * ===============================================
+ */
+@mixin no-padding($side) {
+	@if $side == 'all' {
+		.no-padding {
+				padding: 0 !important;
+		}
+} @else {
+		.no-padding-#{$side} {
+				padding-#{$side}: 0 !important;
+		}
+	}
+}
+
+@include no-padding("left");
+@include no-padding("right");
+@include no-padding("top");
+@include no-padding("bottom");
+@include no-padding("all");
+
+/**
+ * ===============================================
+ * Borders
+ * ===============================================
+ */
+@mixin border-radius($radius){
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+		-ms-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+@mixin border-radius-left($radius){
+	border-radius: $radius 0 0 $radius;
+	-moz-border-radius: $radius 0 0 $radius;
+		-ms-border-radius: $radius 0 0 $radius;
+	-webkit-border-radius: $radius 0 0 $radius;
+}
+
+@mixin border-radius-right($radius){
+	border-radius: 0 $radius $radius 0;
+	-moz-border-radius: 0 $radius $radius 0;
+		-ms-border-radius: 0 $radius $radius 0;
+	-webkit-border-radius: 0 $radius $radius 0;
+}
+
+/**
+ * ===============================================
+ * Grid
+ * ===============================================
+ */
+@mixin container-fixed($gutter: $grid-gutter-width) {
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left:	 ($gutter / 2);
+	padding-right: ($gutter / 2);
+	@include clearfix();
+}
+
+@mixin clearfix() {
+	&:before,
+	&:after {
+		content: " "; // 1
+		display: table; // 2
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin make-row($gutter: $grid-gutter-width) {
+	margin-left:	($gutter / -2);
+	margin-right: ($gutter / -2);
+	@include clearfix();
+}
+
+/**
+ * ===============================================
+ * Scrollbar customisation
+ * ===============================================
+ */
+@mixin cb-custom-scroll(){
+	::-webkit-scrollbar              { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-track        { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-track-piece  { background: rgba(255,255,255,0.1);}
+	::-webkit-scrollbar-thumb        { background: $cb-grey;}
+}
+
+/**
+ * ===============================================
+ * Font Smoothing
+ * ===============================================
+ */
+@mixin font-smoothing($a){
+	@if $a == true{
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	} @else {
+		-webkit-font-smoothing: subpixel-antialiased;
+		-moz-osx-font-smoothing: auto;
+	}
+}
+
+/**
+ * ===============================================
+ * Absolute positioning
+ * ===============================================
+ */
+@mixin absolute-center(){
+	position: absolute;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	left:0px;
+	margin: auto;
+}

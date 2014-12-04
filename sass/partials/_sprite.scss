@@ -1,0 +1,60 @@
+.sprite-arrow-down() {
+  
+  width: round(61px /2);
+  height: round(32px/2);
+	background-image: url(../img/sprite-sm.png);
+	background-position: (0px / 2) (-58px / 2);
+  
+  @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi){
+		
+		background-image: url(../img/sprite.png);
+		background-size: (149px / 2) (90px / 2);
+	}
+  
+}
+
+.sprite-arrow-right() {
+  
+  width: round(30px /2);
+  height: round(41px/2);
+	background-image: url(../img/sprite-sm.png);
+	background-position: (-58px / 2) (0px / 2);
+  
+  @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi){
+		
+		background-image: url(../img/sprite.png);
+		background-size: (149px / 2) (90px / 2);
+	}
+  
+}
+
+.sprite-close() {
+  
+  width: round(53px /2);
+  height: round(53px/2);
+	background-image: url(../img/sprite-sm.png);
+	background-position: (0px / 2) (0px / 2);
+  
+  @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi){
+		
+		background-image: url(../img/sprite.png);
+		background-size: (149px / 2) (90px / 2);
+	}
+  
+}
+
+.sprite-quotation-mark() {
+  
+  width: round(56px /2);
+  height: round(38px/2);
+	background-image: url(../img/sprite-sm.png);
+	background-position: (-93px / 2) (0px / 2);
+  
+  @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi){
+		
+		background-image: url(../img/sprite.png);
+		background-size: (149px / 2) (90px / 2);
+	}
+  
+}
+

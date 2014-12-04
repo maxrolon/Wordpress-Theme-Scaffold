@@ -29,34 +29,32 @@ class config {
 		
 		/* Deregister JS Scripts. Note this runs before registerJS. */
 		self::$deregisterJS = array(
-				'site' => array('jquery', 'backbone', 'underscore'),
-				'admin' => array()
+			'site' => array('jquery', 'backbone', 'underscore'),
+			'admin' => array()
 		);
 		
 		/* Register JS Scripts. Note this runs after deregisterJS. */
 		self::$registerJS = array(
-				'site' => array(
-						'main' => array('main.min.js', false, false, false),
-						),
-				'admin' => array(
-						#'admin' => array('admin.js', false, false, true)
-				)
+			'site' => array(
+				'modernizer' => array('src/vendor/modernizr.min.js', false, false, false),
+				'main' => array('dist/main.min.js', false, false, true),
+			)
 		);
 		
 		/* Deregister CSS Scripts. Note this runs before registerCSS. */
 		self::$deregisterCSS = array(
-				'site' => array(),
-				'admin' => array()
+			'site' => array(),
+			'admin' => array()
 		);
 		
 		/* Register CSS Scripts. Note this runs after deregisterCSS. */
 		self::$registerCSS = array(
-				'site' => array(
-						'main' => array('styles.css'),
-				),
-				'admin' => array(
-						'admin' => array('admin.css'),
-				)
+			'site' => array(
+				'main' => array('styles.min.css'),
+			),
+			'admin' => array(
+				'admin' => array('admin.css'),
+			)
 		);
 		
 		/*

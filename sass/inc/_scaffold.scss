@@ -1,0 +1,28 @@
+.container {
+	@include container-fixed();
+
+	@media (min-width: $screen-sm-min) {
+		width: $container-sm;
+	}
+	@media (min-width: $screen-md-min) {
+		width: $container-md;
+	}
+	@media (min-width: $screen-lg-min) {//1200px;
+		width: $container-lg;//1030
+	}
+}
+
+.row {@include make-row()}
+
+@mixin span-columns($index,$offset:0){
+	width:percentage($index/$grid-columns);
+	position: relative;
+	min-height: 1px;
+	float:left;
+	padding-left: $grid-gutter-width/2;
+	padding-right: $grid-gutter-width/2;
+	
+	@if ($offset > 0) {
+		margin-left: percentage(($offset / $grid-columns));
+	}
+}

@@ -1,24 +1,40 @@
 {
-  "name": "BarrelScaffold",
-  "version": "0.0.1",
-  "private": true,
-  "author": "Barrel",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browserify": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-autoprefixer": "^0.8.2",
-    "grunt-contrib-less": "^0.11.3",
-    "grunt-contrib-connect": "^0.8.0",
-    "grunt-contrib-uglify": "^0.5.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-image-resize": "^0.3.0",
-    "grunt-spritesmith": "^2.1.1",
-    "load-grunt-tasks": "^0.6.0",
-    "lodash": "^2.4.1",
-    "minifyify": "^4.0.3",
-    "jquery": "^1.11.1",
-    "backbone": "latest",
-    "require": "latest"
-  }
+	"name": "BarrelScaffold",
+	"version": "0.0.1",
+	"private": true,
+	"author": "Barrel",
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-browserify": "latest",
+		"browserify-shim": "~3.4.1",
+		"grunt-contrib-concat": "latest",
+		"grunt-autoprefixer": "^0.8.2",
+		"grunt-contrib-sass": "latest",
+		"grunt-contrib-connect": "^0.8.0",
+		"grunt-contrib-uglify": "^0.5.0",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-image-resize": "^0.3.0",
+		"grunt-spritesmith": "^2.1.1",
+		"load-grunt-tasks": "^0.6.0",
+		"lodash": "^2.4.1",
+		"minifyify": "^4.0.3",
+		"jquery": "^1.11.1",
+		"backbone": "latest",
+		"require": "latest"
+	},
+	
+	"browser": {
+		"scrollTo"		:	 "./js/src/vendor/scrollTo.js",
+		"waypoints" :	 "./js/src/vendor/waypoints.js"
+	},
+	
+	"browserify-shim": {
+		"jquery": "global:jQuery",
+		"scrollTo":{"depends": [ "jquery:jQuery" ] },
+		"waypoints":{"depends": [ "jquery:jQuery" ] }
+	},
+	
+	"browserify": {
+			 "transform": ["browserify-shim"]
+	}
 }

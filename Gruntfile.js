@@ -5,48 +5,47 @@ module.exports = function(grunt) {
 	// Load grunt tasks
 
 	require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', 'assemble']});
-
-
+	
 	// Configure Grunt tasks
+
 	grunt.initConfig({
-		less: {
+		
+		browserify: {
 			options: {
-				compress: true,
-				yuicompress: true,
-				optimization: 2,
-				sourceMap: true,
-				sourceMapFilename: 'css/styles.css.map',
-				sourceMapURL: 'styles.css.map',
-				sourceMapBasepath: 'css/',
-				paths: ['less/']
-			},
-			dist: {
-				files: { 
-					'css/styles.css': 'less/*.less', 'css/admin.css': 'less/partials/site-specific/admin.less'
+				browserifyOptions:{
+			 		debug:true
+				},
+			 	preBundleCB: function(b) {
+					b.plugin('minifyify', {
+					 map: 'main.min.js.map',
+					 output: 'js/dist/main.min.js.map',
+				 });
 				}
+			},
+			client: {
+				src: ['js/src/modules/app.js'],
+				dest: 'js/dist/main.min.js',
 			}
 		},
-
+		
+		sass: { 
+			 theme: {			 
+				 options: {											
+					 style: 'compressed'
+				 },
+				 files: {													
+					 'css/styles.min.css':'sass/styles.scss'
+				}
+			}
+		 },
+		
 		autoprefixer: {
 			options: {
 				map: true
 			},
 			dist: {
-				src: 'css/styles.css',
-				dest: 'css/styles.css'
-			}
-		},
-		
-		sprite:{
-			ui: {
-				engine: 'pngsmith',
-				algorithm: 'binary-tree',
-				src: 'img/ui/*.png',
-				destImg: 'img/sprite.png',
-				imgPath: '../../../img/sprite.png',
-				cssTemplate: 'moustache/sprite.less.mustache',
-				destCSS: 'less/partials/site-specific/sprite.less',
-				padding: 5
+				src: 'css/styles.min.css',
+				dest: 'css/styles.min.css'
 			}
 		},
 		
@@ -60,31 +59,29 @@ module.exports = function(grunt) {
 				]
 			},
 		},
-
-		uglify: {
-			 options: {
-				 sourceMap: true
-			 },
-			 dist: {
-				 files: [{
-					expand: true,
-					cwd: 'js/src',
-					src: '**/*.js',
-					dest: 'js/src/min'
-				}]
-			 }
-		 },
+		
+		sprite:{
+			ui: {
+				engine: 'pngsmith',
+				algorithm: 'binary-tree',
+				src: 'img/ui/*.png',
+				destImg: 'img/sprite.png',
+				imgPath: '../../../img/sprite.png',
+				cssTemplate: 'moustache/sprite.scss.mustache',
+				destCSS: 'sass/partials/_sprite.scss',
+				padding: 5
+			}
+		},
 
 		watch: {
-			less: {
-				options:{
-					 livereload: true,
-					 reload: true
-				},
-				files: ['less/**/*.less'],
-				tasks: ['less']
+		 sass: {
+			options:{
+			 	livereload: false,
 			},
-			css: {
+			files: ['sass/**/*.scss'],
+			tasks: ['sass:theme']
+		 },
+		 css: {
 				options: {
 					livereload: true,
 					spawn: false,
@@ -107,31 +104,28 @@ module.exports = function(grunt) {
 				files: ['img/sprite.png'],
 				tasks: ['image_resize']
 			},
-			 uglify: {
-				 options: {
-					 livereload: true
-				 },
-				 files: ['js/**/*.js']//,
-				 //tasks: ['uglify']
+			browserify: {
+				options: {
+					livereload:true
+				},
+				files: ['js/src/modules/*.js'],
+				tasks: ['browserify']
 			}
 		}
 	});
 
-	grunt.registerTask('compile', [
+	grunt.registerTask('build', [
 		'sprite',
 		'image_resize',
-		'less',
-		'autoprefixer'
+		'sass',
+		'autoprefixer',
+		'browserify'
+		//'uglify'
 	]);
 
 	grunt.registerTask('dev', [
-		'compile',
+	 	'build',
 		'watch',
-	]);
-	
-	grunt.registerTask('production', [
-		'uglify',
-		'compile',
 	]);
 
 	grunt.registerTask('default', ['dev']);

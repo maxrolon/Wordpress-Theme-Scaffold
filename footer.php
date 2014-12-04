@@ -1,7 +1,9 @@
 		<footer>
 			<span></span>
 		</footer>
-			
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+		
 		<?php 
 			/*
 			 * Write all JS files that belong before the closing body tag.

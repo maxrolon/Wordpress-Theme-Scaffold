@@ -1,4 +1,6 @@
 node_modules
+*.scssc
+
 img/sprite.png
 img/sprite-sm.png
 less/partials/site-specific/sprite.less

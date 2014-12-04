@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+	RewriteBase /
+	
+	RewriteCond %{HTTP_COOKIE} resolution=([^;]+) [NC]
+	RewriteCond %{DOCUMENT_ROOT}/wp-content/themes/bootstrap/library/vendor/adaptive-images.php -f
+	RewriteCond %{REQUEST_URI} !/wp-content/themes/bootstrap/img/sprite-bg.png
+	RewriteCond %{REQUEST_URI} !/wp-content/themes/bootstrap/img/sprite-sm.png
+	RewriteRule \.(?:jpe?g|gif|png)$ /wp-content/themes/bootstrap/library/vendor/adaptive-images.php [L]
+	
+	RewriteRule ^index\.php$ - [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /index.php [L]
+
+</IfModule>
