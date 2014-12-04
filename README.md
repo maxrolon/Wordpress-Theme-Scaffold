@@ -1,4 +1,4 @@
-Barrel Nyc : El theme-o
+Wordpress Theme Scaffold
 =======================
 
 
