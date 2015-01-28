@@ -28,6 +28,10 @@ $font-size-base: 19px;
 $line-height-base: 26px;
 $type-weight-base: 500;
 
+@function em($px, $base: $font-size-base) {
+		@return ($px / $base) * 1em;
+}
+
 $font-size-h1: 70px; 
 $line-height-h1: 1.2; 
 
