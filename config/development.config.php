@@ -53,7 +53,7 @@ class config {
 				'main' => array('styles.min.css'),
 			),
 			'admin' => array(
-				'admin' => array('admin.css'),
+				'admin' => array('admin.min.css'),
 			)
 		);
 		

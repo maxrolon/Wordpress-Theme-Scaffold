@@ -103,6 +103,11 @@ class options_group implements bootstrap_options{
 $arg = array(
 	'Google Analytics' => array(
 		'Analytics Code' => '',
+		'Analytics Coded' => '',
+	),
+	'Google Analyticss' => array(
+		'Analytics Codess' => '',
+		'Analytics Coded' => '',
 	),
 );
 ?>

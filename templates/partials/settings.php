@@ -21,7 +21,6 @@
 						<td>
 							<h4>'.$option.'</h4>
 							<label>'.$instruction.'</label>
-							<br/>
 							<input type="text" name="'.$option_escaped.'" value="'.$option_saved.'" size="40" maxlength="255">
 						</td>
 					</tr>

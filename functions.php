@@ -111,32 +111,6 @@ function settings_page(){
 
 
 
-
-/**
- * =====================================================
- *
- * Include ACF
- *
- * =====================================================
- */
-
-include_once("acf/acf.php");
-include_once('acf/add-ons/acf-repeater/acf-repeater.php');
-include_once("library/helpers/acf.helper.class.php");
-	
-if(function_exists("register_field_group")){
- 
-  /**
-	 *
-	 * $arg defined in library/helpers/acf.helper.class.php
-	 *
-	 */
-	#new library\helpers\field_group('Custom Page',$args);
-
-}
-
-
-
 /**
  * =====================================================
  *

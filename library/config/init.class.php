@@ -253,7 +253,7 @@ class Init {
 	}
 	
 	function scaffoldMenu() {
-		add_menu_page( 'Theme Settings', 'Theme Settings', 'delete_pages', 'scaffold', 'settings_page' );
+		add_menu_page( 'Theme Settings', 'Theme Settings', 'delete_pages', 'scaffold','settings_page',get_bloginfo('stylesheet_directory').'/img/icons/barrel.png');
 	}
 }
 ?>

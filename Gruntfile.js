@@ -29,23 +29,42 @@ module.exports = function(grunt) {
 		},
 		
 		sass: { 
-			 theme: {			 
-				 options: {											
+			theme: {			 
+				options: {											
 					 style: 'compressed'
-				 },
-				 files: {													
-					 'css/styles.min.css':'sass/styles.scss'
+				},
+				files: {													
+					'css/styles.min.css':'sass/styles.scss'
+				}
+			},
+			admin: {			 
+				options: {											
+					 style: 'compressed'
+				},
+				files: {													
+					'css/admin.min.css':'sass/admin.scss'
 				}
 			}
 		 },
 		
 		autoprefixer: {
-			options: {
-				map: true
+			theme:{
+				options: {
+					map: true
+				},
+				dist: {
+					src: 'css/styles.min.css',
+					dest: 'css/styles.min.css'
+				}
 			},
-			dist: {
-				src: 'css/styles.min.css',
-				dest: 'css/styles.min.css'
+			admin:{
+				options: {
+					map: true
+				},
+				dist: {
+					src: 'css/admin.min.css',
+					dest: 'css/admin.min.css'
+				}
 			}
 		},
 		
@@ -78,17 +97,33 @@ module.exports = function(grunt) {
 			options:{
 			 	livereload: false,
 			},
-			files: ['sass/**/*.scss'],
+			files: ['sass/**/*.scss','!sass/admin.scss'],
 			tasks: ['sass:theme']
 		 },
-		 css: {
+		 sass_theme: {
+			options:{
+			 	livereload: false,
+			},
+			files: ['sass/admin.scss'],
+			tasks: ['sass:admin']
+		 },
+		 css_theme: {
 				options: {
 					livereload: true,
 					spawn: false,
 					reload: true
 				},
-				files: ['css/*.css'],
-				tasks: ['autoprefixer']
+				files: ['css/styles.min.css'],
+				tasks: ['autoprefixer:theme']
+			},
+			css_admin: {
+				options: {
+					livereload: true,
+					spawn: false,
+					reload: true
+				},
+				files: ['css/admin.min.css'],
+				tasks: ['autoprefixer:admin']
 			},
 			sprite: {
 				options: {
