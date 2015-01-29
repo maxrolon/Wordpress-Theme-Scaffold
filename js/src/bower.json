@@ -1,0 +1,7 @@
+{
+	"name": "js-dependecies",
+	"version": "0.1",
+	"dependencies": {
+		"respond":"latest"
+	 }
+}
