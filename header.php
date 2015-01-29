@@ -21,12 +21,14 @@
 		<link rel="shortcut icon" href="<?php echo bloginfo('stylesheet_directory') ?>/favicon.ico" />
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 		
-		<?php # Set cookie to allow the server to send adaptive images ?>
-		<script>
-			var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-			var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-			document.cookie='resolution='+Math.max(w,h)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';
-		</script>
+		<?php 
+		# Set cookie to allow the server to send adaptive images 
+		#<script>
+		#	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+		#	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+		#	document.cookie='resolution='+Math.max(w,h)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';
+		#</script>
+		?>
 		
 		<?php
 			/* 

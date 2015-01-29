@@ -50,8 +50,6 @@ define( 'ATTACHMENTS_SETTINGS_SCREEN', false );
 define( 'ATTACHMENTS_DEFAULT_INSTANCE', false );
 
 
-
-
 /**
  * =====================================================
  *
@@ -77,7 +75,28 @@ function ns_theme() {
 }
 
 
+/**
+ * =====================================================
+ *
+ * ACF (v5)
+ *
+ * =====================================================
+ */
+add_filter('acf/settings/path', 'my_acf_settings_path');
+add_filter('acf/settings/dir', 'my_acf_settings_dir');
+#add_filter('acf/settings/show_admin', '__return_false');
+ 
+function my_acf_settings_path( $path ) {
+	$path = get_stylesheet_directory() . '/acf/';
+	return $path;
+}
 
+function my_acf_settings_dir( $dir ) {
+	$dir = get_stylesheet_directory_uri() . '/acf/';
+	return $dir;
+}
+ 
+include_once( get_stylesheet_directory() . '/acf/acf.php' );
 
 
 /**
@@ -85,18 +104,12 @@ function ns_theme() {
  *
  * Register settings page class
  *
- * =====================================================
- */
-
-/**
- *
  * Creates the options page in admin
  * Registered with add_menu_page in libray\config\init();
- * 
  *
+ * =====================================================
  */
 function settings_page(){
-	
 	require_once( THEME_DIR . "/library/helpers/options.helper.class.php" );
 	
 	/**
@@ -105,32 +118,7 @@ function settings_page(){
 	 *
 	 */
 	new library\options_group('Settings',$arg);
-
 }
-
-
-
-
-/**
- * =====================================================
- *
- * 404 to homepage
- * Active hook if needed
- *
- * =====================================================
- */
-
-#add_action('wp', 'redirect_404');
-   
-function redirect_404(){
-	if ( is_404() ) {
-		header ('HTTP/1.1 301 Moved Permanently');
-		header ("Location: " . get_bloginfo('url') );
-	 	exit(0);
-	}
-}
-
-
 
 
 /**
@@ -140,12 +128,9 @@ function redirect_404(){
  *
  * =====================================================
  */
-
 if ( is_admin() ) {
 	include_once("library/functions/admin/admin-functions.php");
 }
-
-
 
 
 /**
@@ -155,11 +140,7 @@ if ( is_admin() ) {
  *
  * =====================================================
  */
-
 include_once("library/helpers/loops.helper.class.php");
-
-
-
 
 
 /**
@@ -169,11 +150,7 @@ include_once("library/helpers/loops.helper.class.php");
  *
  * =====================================================
  */
-
 include_once("library/functions/theme/app.php");
-
-
-
 
 
 /**

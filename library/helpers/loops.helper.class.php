@@ -12,9 +12,7 @@ class loop{
 	private $loops = false;
 	
 	function __construct(){
-		
-	  $this->cache_loops();		
-		
+		$this->cache_loops();		
 	}
 	
 	/** 
@@ -23,16 +21,12 @@ class loop{
 	 * @return void
 	 *
 	 */
-	 private function cache_loops(){
+	private function cache_loops(){
 		global $theme_loops;
-		
 		if (isset($theme_loops)):
-		
 			$this->loops = $theme_loops;
-		
 		endif;
-		
-	 }
+	}
 	
 	/** 
 	 * Compares to return array to loop array
@@ -42,21 +36,13 @@ class loop{
 	 *
 	 */
 	private function restrict_loops($loop, $loops){
-		
 		$return = array();
-		
 		foreach ($loops as $key => $value):
-		
 			$pos = array_search( $key, array_keys($loops) );
-			
 			if ( !in_array($pos, $loop) ) continue;
-			
 			$return[$key] = $value;
-		
 		endforeach;
-		
 		return $return;
-		
 	}
 	
 	/** 
@@ -68,29 +54,17 @@ class loop{
 	 *
 	 */
 	public function retrieve($loop, $data = false, $orderby = "DESC", $xtra = ''){
-		
 		$recompiled_loops = $this->restrict_loops($loop, $this->loops);
-		
 		$return = array();
-		
 		foreach ($recompiled_loops as $key => $value):
-			
 			switch (true):
-				
 				case ($key == 'default'):
-					
 					$out = $this->loop_default($value, $data, $orderby, $xtra);
-					
 					array_push($return,$out);
-				
 				break;
-				
 			endswitch;
-		
 		endforeach;
-		
 		return $return;
-		
 	}
 	
 	/** 
@@ -102,9 +76,7 @@ class loop{
 	 */
 	private function wp_loop(){
 		global $wp_query, $post;
-	
 		$Query = new WP_Query( $args );
-	
 	}
 	
 	/** 
@@ -116,16 +88,11 @@ class loop{
 	 */
 	private function loop_latest($args, $num, $orderby, $xtra){
 		global $wpdb;
-		
 		$table_name = $args['table'];
 		$table_name = $wpdb->prefix . $table_name;
-	
 		$sql = "SELECT * FROM $table_name $xtra ORDER BY id $orderby LIMIT %d";
-	
 		$query = $wpdb->prepare( $sql, $num);
-		
 		$out = $wpdb->get_results( $query, ARRAY_A );
-		
 		return $out;
 	}
 	
@@ -141,17 +108,10 @@ class loop{
 		
 		$table_name = $args['table'];
 		$table_name = $wpdb->prefix . $table_name;
-		
 		$column = $args['column'];
-	
-		$sql = "
-		SELECT * FROM $table_name WHERE $column = '$string'
-		";
-	
+		$sql = "SELECT * FROM $table_name WHERE $column = '$string'";
 		$query = $wpdb->prepare($sql, false );
-		
 		$out = $wpdb->get_results( $query, ARRAY_A );
-		
 		return $out;
 	}
 	
@@ -164,20 +124,15 @@ class loop{
 	 */
 	private function loop_save($args, $data){
 		global $wpdb;
-		
 		$date = new \DateTime(NULL, new \DateTimeZone('America/New_York'));
 		$time = $date->format('YmdHis');
-		
 		$entry = array(
 			'field-1' => $data['field-1'],
 			'time' => $time,
 		);
-		
 		$table_name = $args['table'];
 		$table_name = $wpdb->prefix . $table_name;
-		
 		$out = $wpdb->insert( $table_name, $entry );
-		
 		return $out;
 	}
 }
