@@ -17,22 +17,12 @@
 		"grunt-spritesmith": "^2.1.1",
 		"load-grunt-tasks": "^0.6.0",
 		"lodash": "^2.4.1",
-		"minifyify": "^4.0.3",
-		"jquery": "^1.11.1",
-		"backbone": "latest",
-		"require": "latest"
+		"minifyify": "^4.0.3"
 	},
 	
-	"browser": {
-		"scrollTo"		:	 "./js/src/vendor/scrollTo.js",
-		"waypoints" :	 "./js/src/vendor/waypoints.js"
-	},
+	"browser": {},
 	
-	"browserify-shim": {
-		"jquery": "global:jQuery",
-		"scrollTo":{"depends": [ "jquery:jQuery" ] },
-		"waypoints":{"depends": [ "jquery:jQuery" ] }
-	},
+	"browserify-shim": {},
 	
 	"browserify": {
 			 "transform": ["browserify-shim"]

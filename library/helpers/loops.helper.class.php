@@ -86,53 +86,8 @@ class loop{
 	 * @return array
 	 *
 	 */
-	private function loop_latest($args, $num, $orderby, $xtra){
+	private function default_loop($args, $num, $orderby, $xtra){
 		global $wpdb;
-		$table_name = $args['table'];
-		$table_name = $wpdb->prefix . $table_name;
-		$sql = "SELECT * FROM $table_name $xtra ORDER BY id $orderby LIMIT %d";
-		$query = $wpdb->prepare( $sql, $num);
-		$out = $wpdb->get_results( $query, ARRAY_A );
-		return $out;
-	}
-	
-	/** 
-	 * Checks to see if an entry exists already
-	 * Using WP standards
-	 * @params string array
-	 * @return array
-	 *
-	 */
-	private function loop_exists($args, $string){
-		global $wpdb;
-		
-		$table_name = $args['table'];
-		$table_name = $wpdb->prefix . $table_name;
-		$column = $args['column'];
-		$sql = "SELECT * FROM $table_name WHERE $column = '$string'";
-		$query = $wpdb->prepare($sql, false );
-		$out = $wpdb->get_results( $query, ARRAY_A );
-		return $out;
-	}
-	
-	/** 
-	 * Save a record to a specific table
-	 * Using WP standards
-	 * @params string array
-	 * @return array
-	 *
-	 */
-	private function loop_save($args, $data){
-		global $wpdb;
-		$date = new \DateTime(NULL, new \DateTimeZone('America/New_York'));
-		$time = $date->format('YmdHis');
-		$entry = array(
-			'field-1' => $data['field-1'],
-			'time' => $time,
-		);
-		$table_name = $args['table'];
-		$table_name = $wpdb->prefix . $table_name;
-		$out = $wpdb->insert( $table_name, $entry );
 		return $out;
 	}
 }
@@ -144,7 +99,7 @@ class loop{
  *
  */
 $theme_loops = array(
-	'default' => array(
+	'default_loop' => array(
 		'table' => 'default',
 	),
 );
